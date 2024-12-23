@@ -1,0 +1,265 @@
+@import "func";
+@import url("reset.css");
+@import url("common.css");
+
+body:has(.layout-wrap) {
+  background: #B2B2B2;
+  @include flex_center;
+}
+
+.layout-wrap {
+  display: flex;
+  flex-direction: column;
+  width: 900px;
+  height: 740px;
+  max-width: 900px;
+  max-height: 740px;
+  background: #fff;
+  box-shadow: 0px 4px 30px 0px #00000026;
+
+  &.full {
+    width: 100vw;
+    height: 100vh;
+    max-width: initial;
+    max-height: initial;
+    box-shadow: none;
+
+    .btn-full {
+      background-image: url(#{$imgPath}ic_reduce.svg);
+    }
+    .org-all-wrap {
+      max-height: calc(100vh - 121px);
+    }
+  }
+}
+
+.header-wrap {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid $cl_text_dis;
+  font-size: 20px;
+  .hd-top {
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    align-items: center;
+    font-weight: 700;
+
+    .group-btn {
+      display: flex;
+      gap: 10px;
+    }
+  }
+  .search-bar {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 20px;
+  }
+}
+
+.org-all-wrap {
+  flex: 1;
+  display: flex;
+  max-height: 620px;
+  .org-tree-wrap {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid $cl_text_dis;
+    height: 100%;
+    padding: 10px 0;
+    padding-right: 4px;
+    .company-name {
+      font-weight: 700;
+      height: 40px;
+      padding-left: 20px;
+      display: flex;
+      align-items: center;
+    }
+    .org-tree-box {
+      flex: 1;
+      overflow: scroll;
+      @include scrollbar("V");
+      @include scrollbar("H");
+      @include details_tree_arrow;
+      color: $cl_text_2;
+
+      details.sel {
+        & > summary {
+          .org-name {
+            font-weight: 700;
+            color: $cl_text_1;
+            span {font-weight: 400;}
+          }
+          &::before {
+            filter: brightness(0) saturate(100%) invert(17%) sepia(6%) saturate(1048%) hue-rotate(202deg) brightness(95%) contrast(92%);
+          }
+        }
+      }
+        summary.location {
+          .org-name {
+            font-weight: 700;
+            // width: 300px;
+            // height: 40px;
+            background: $cl_main;
+            color: #fff !important;
+            span {font-weight: 400;}
+          }
+          &::before {
+            filter: brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(0%) hue-rotate(104deg) brightness(103%) contrast(103%) !important;
+          }
+        }
+      .org-depth1 {
+        min-width: fit-content;
+        & > summary {
+          &::before {
+            left: 20px;
+          }
+          & > .org-name {
+            padding-left: 46px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+          }
+        }
+
+        .org-depth2 {
+          & > summary {
+            &::before {
+              left: 46px;
+            }
+            & > .org-name {
+              padding-left: 72px;
+              height: 40px;
+              display: flex;
+              align-items: center;
+            }
+          } 
+
+          .org-depth3 {
+            & > summary {
+              &::before {
+                left: 72px;
+              }
+              & > .org-name {
+                padding-left: 98px;
+                height: 40px;
+                display: flex;
+                align-items: center;
+              }
+            } 
+
+            .last-depth {
+              li {
+                padding-left: 98px;
+                height: 40px;
+                display: flex;
+                align-items: center;
+              }
+            }
+          }
+        }
+      }
+      .last-depth {
+        li {
+          cursor: pointer;
+          width: 100%;
+          &::before {
+            content: url(#{$imgPath}ic_members.svg);
+            object-fit: contain;
+          }
+          &.location {
+            font-weight: 700;
+            background: $cl_main;
+            color: #fff !important;
+            span {font-weight: 400;}
+            &::before {
+              content: url(#{$imgPath}ic_members_wh.svg);
+              object-fit: contain;
+            }
+          }
+        }
+      }
+      .org-name{
+        display: flex;
+        gap: 10px;
+        white-space: nowrap;
+        span.cnt {
+          color: $cl_text_dis;
+        }
+      }
+    }
+  }
+  .org-detail-wrap {
+    @include scrollbar("V");
+    @include scrollbar("H");
+    overflow: auto;
+    padding: 10px 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    color: $cl_text_2;
+    .breadcrumbs {
+      height: 40px;
+      display: flex;
+      align-items: center;
+      .cur-loc {
+        font-weight: 700;
+        color: $cl_main;
+      }
+    }
+    .member-wrap {
+      display: flex;
+      flex-direction: column;      
+      @include details_member_arrow;
+      .member-info {
+        border-bottom: 0.63px solid #EEEEEE;
+        .member-detail {
+          padding: 20px;
+          background: #FCFCFC;
+          li {
+            display: flex;
+            height: 23px;            
+            &:first-child {
+              margin-bottom: 8.5px;
+            }
+            &:not(:first-child),&:not(:last-child) {
+              margin-bottom: 17px;
+            }
+            .title {
+              width: 78px;
+            }
+            &::before {
+              width: 16px;
+              height: 16px;
+              margin-right: 8px;
+            }
+            &:nth-child(2)::before {
+              content: url(#{$imgPath}ic_position.svg);
+            } 
+            &:nth-child(3)::before {
+              content: url(#{$imgPath}ic_rank.svg);             
+            } 
+            &:nth-child(4)::before {
+              content: url(#{$imgPath}ic_tel.svg);             
+            } 
+            &:nth-child(5)::before {
+              content: url(#{$imgPath}ic_birth.svg);             
+            } 
+            &:nth-child(6)::before {
+              content: url(#{$imgPath}ic_charge.svg);             
+            } 
+          }
+        }
+      }
+    }
+    .team-wrap {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+

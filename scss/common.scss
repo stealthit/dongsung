@@ -1,0 +1,114 @@
+@import "func";
+@import url("reset.css");
+
+
+.member-info-box {
+  height: 140px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px 0;  
+  .profile-wrap {
+    position: relative;
+    width: 48px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    &::after {
+      content: '';
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      top: 36px;
+      right: 0;
+      border: 1.25px solid #FFFFFF;
+      background: $cl_text_2;
+    }
+    &.on::after {
+      background: #38BEA9;
+    }
+  }
+  .profile-detail {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    li {
+      &:first-child {
+        font-size: 14px;
+        margin-bottom: 4px;
+        .member-name {
+          font-size: 16px;
+          font-weight: 700;
+          color: #000;
+        }
+      }
+    }
+  }
+  .message-wrap {
+    width: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+}
+
+.btn-icon-32 {
+  width: 32px;
+  height: 32px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.btn-icon-24 {
+  width: 24px;
+  height: 24px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.btn-full {
+  background-image: url(#{$imgPath}ic_full.svg);
+}
+.btn-close {
+  background-image: url(#{$imgPath}ic_close.svg);
+}
+.btn-search {
+  background-image: url(#{$imgPath}ic_search.svg);
+}
+
+// image, icon 
+.ic-search-24 {
+  width: 24px;
+  height: 24px;
+  background: url(#{$imgPath}ic_search.svg);
+}
+.ic-message-24 {
+  width: 24px;
+  height: 24px;
+  background: url(#{$imgPath}ic_message.svg);
+}
+.ic-members {
+  width: 16px;
+  height: 16px;
+  background: url(#{$imgPath}ic_members.svg);
+}
+.ic-details-arrow {
+  width: 16px;
+  height: 16px;
+  background: url(#{$imgPath}ic_members.svg);
+}
+
+
+.ic-msg {
+  width: 24px;
+  height: 24px;
+  content: url(#{$imgPath}ic_mail.svg);
+}
+
+.img-person {
+  width: 48px;
+  height: 48px;
+  content: url(#{$imgPath}img_person.svg);
+}

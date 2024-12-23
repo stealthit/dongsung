@@ -1,0 +1,103 @@
+$breakpoint-mobile: 768px;
+$cl_main: #6D24E3;
+$cl_text_1: #313139;
+$cl_text_2: #626969;
+$cl_text_dis: #D2D3D4;
+
+$imgPath: '../img/';
+
+@mixin mobile {
+  @media (max-width: #{$breakpoint-mobile - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: $breakpoint-mobile) {
+    @content;
+  }
+}
+
+@mixin flex_center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin hidden_scroll {
+  overflow: scroll;
+  &::-webkit-scrollbar {
+    display: none; 
+  }
+}
+
+@mixin scrollbar($direction) {
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  &::-webkit-scrollbar {
+    @if $direction == 'H' { height: 6px; } @else { width: 4px; }
+    display: inline;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    @if $direction == 'H' { height: 6px; } @else { width: 4px; }
+    border-radius: 100px;
+    background: #D9D9D9;
+  }
+}
+
+@mixin details_tree_arrow {
+  summary {
+    display: block; /* 그 외의 브라우저용 사용자 정의 스타일 */
+  }
+  
+  summary {
+    position: relative;
+    // padding-left: 1.2em;
+    cursor: pointer;
+  }
+  summary::before {
+    content: url(#{$imgPath}ic_arr_tree.svg);
+    // width: 16px;
+    // height: 16px;
+    position: absolute;    
+    top: 8px;
+    left: 0;
+    transition: .25s transform;
+    object-fit: contain;
+    
+  }
+  details[open] > summary:before {
+    top: 6px;
+    transform: rotateZ(90deg);
+  }
+}
+
+@mixin details_member_arrow {
+  summary {
+    display: block; /* 그 외의 브라우저용 사용자 정의 스타일 */
+  }
+  
+  summary {
+    position: relative;
+    cursor: pointer;
+  }
+  summary::before {
+    content: url(#{$imgPath}ic_mem_arr_down.svg);
+    // width: 16px;
+    // height: 16px;
+    position: absolute;    
+    bottom: 8px;
+    right: 0;
+    object-fit: contain;
+    transition: .25s transform;
+  }
+  details[open] > summary:before {
+    bottom: 6px;
+    content: url(#{$imgPath}ic_mem_arr_up.svg);
+  }
+}
