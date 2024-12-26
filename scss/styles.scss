@@ -50,13 +50,18 @@ body:has(.layout-wrap) {
       display: flex;
       gap: 10px;
     }
+    input {
+      flex: 1;
+    }
   }
   .search-bar {
     height: 60px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 10px;
     padding: 0 20px;
+    input[type="text"] {flex: 1;}
   }
 }
 
@@ -78,10 +83,14 @@ body:has(.layout-wrap) {
       padding-left: 20px;
       display: flex;
       align-items: center;
+      gap: 10px;
+      span {
+        color: $cl_main;
+      }
     }
     .org-tree-box {
       flex: 1;
-      overflow: scroll;
+      overflow: auto;
       @include scrollbar("V");
       @include scrollbar("H");
       @include details_tree_arrow;
@@ -107,6 +116,7 @@ body:has(.layout-wrap) {
             background: $cl_main;
             color: #fff !important;
             span {font-weight: 400;}
+            .search-word {color: #fff;}
           }
           &::before {
             filter: brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(0%) hue-rotate(104deg) brightness(103%) contrast(103%) !important;
@@ -126,6 +136,12 @@ body:has(.layout-wrap) {
           }
         }
 
+        & > .last-depth {
+          li {
+            padding-left: 72px;
+          }
+        }
+
         .org-depth2 {
           & > summary {
             &::before {
@@ -138,6 +154,12 @@ body:has(.layout-wrap) {
               align-items: center;
             }
           } 
+
+          & > .last-depth {
+            li {
+              padding-left: 98px;
+            }
+          }
 
           .org-depth3 {
             & > summary {
@@ -170,6 +192,8 @@ body:has(.layout-wrap) {
           &::before {
             content: url(#{$imgPath}ic_members.svg);
             object-fit: contain;
+            margin-right: 10px;
+            padding-top: 4px;
           }
           &.location {
             font-weight: 700;
@@ -180,16 +204,36 @@ body:has(.layout-wrap) {
               content: url(#{$imgPath}ic_members_wh.svg);
               object-fit: contain;
             }
+            .search-word {color: #fff;}
           }
         }
       }
       .org-name{
-        display: flex;
-        gap: 10px;
+        display: flex;        
         white-space: nowrap;
         span.cnt {
+          margin-left: 10px;
           color: $cl_text_dis;
         }
+      }
+    }
+
+    // search page
+    .result-title {
+      height: 40px;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      color: $cl_main;
+      font-weight: 700;
+    }
+    .search-dept-wrap {
+      margin-bottom: 20px;
+    }
+    .search-member-wrap {
+      .member-info-box {
+        cursor: pointer;
+        padding: 20px;        
       }
     }
   }
@@ -202,15 +246,7 @@ body:has(.layout-wrap) {
     display: flex;
     flex-direction: column;
     color: $cl_text_2;
-    .breadcrumbs {
-      height: 40px;
-      display: flex;
-      align-items: center;
-      .cur-loc {
-        font-weight: 700;
-        color: $cl_main;
-      }
-    }
+
     .member-wrap {
       display: flex;
       flex-direction: column;      
@@ -224,9 +260,10 @@ body:has(.layout-wrap) {
             display: flex;
             height: 23px;            
             &:first-child {
+              gap: 5px;
               margin-bottom: 8.5px;
             }
-            &:not(:first-child),&:not(:last-child) {
+            &:not(:first-child,:last-child) {
               margin-bottom: 17px;
             }
             .title {
@@ -259,7 +296,322 @@ body:has(.layout-wrap) {
     .team-wrap {
       display: flex;
       flex-direction: column;
+      padding: 20px;
+      li {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        height: 40px;
+        span.cnt {
+          color: $cl_text_dis;
+        }
+      }
     }
   }
 }
 
+
+@include mobile {
+
+  body:has(.layout-wrap) {
+    background: initial;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  
+  
+  .btn-search {
+    width: 40px;
+    height: 40px;
+  }
+
+  .breadcrumbs {
+    font-size: 24px;
+  }
+  
+  .member-info-box {
+    cursor: default;
+    padding: 20px;
+    height: 200px;
+    border-bottom: 1px solid #EEEEEE;
+    .profile-wrap {
+      position: relative;
+      width: 100px;
+      &::after {
+        width: 24px;
+        height: 24px;
+        top: 76px;
+      }
+    }
+    .profile-detail {     
+      li {
+        line-height: 1.5;
+        font-size: 26px;
+        color: $cl_text_2;
+        &:first-child {
+          gap: 10px;
+          font-size: 24px;
+          .member-name {
+            font-size: 30px;
+          }
+        }
+      }
+    }
+    .message-wrap {
+      width: 40px;
+    }
+    
+    &.location {
+      .profile-detail {     
+        li {
+          color: #fff;
+        }
+      }
+      .message-wrap {
+        img.ic-msg-40 {
+          width: 40px;
+          height: 40px;
+          object-fit: cover;
+          content: url(#{$imgPath}ic_mail_wh.svg);
+        }
+      }
+    }
+
+    &.small {
+      height: 140px;
+    }
+
+    &.large {
+      padding: 40px;
+      height: 502px;
+      flex-direction: column; 
+      align-items: center;
+      font-size: 26px;
+      .profile-wrap {
+        width: 200px;
+        &::after {
+          content: url(#{$imgPath}ic_mail_36.svg);
+          position: absolute;
+          width: 60px;
+          height: 60px;
+          top: auto;
+          bottom: 0;
+          background: #fff;
+          @include flex_center;
+          padding-top: 6px;
+        }
+      }
+      .profile-detail {
+        gap: 10px;
+        align-items: center;
+        li {
+          margin-bottom: 0 !important;
+          color: $cl_text_2;
+        }
+      }
+    }
+  }
+
+  .layout-wrap {
+    width: 100vw;
+    min-height: 100%;
+    box-shadow: none;
+    flex: 1;
+
+    .header-wrap {
+      .hd-top {
+        height: 80px;
+        &:has(input) {
+          border-bottom: 1px solid $cl_text_dis;
+          input {
+            border-bottom: none;
+            font-size: 30px;
+            margin-left: 10px;
+          }
+        }
+        .title {
+          font-size: 28px;
+          display: flex;
+          gap: 10px;
+          .cnt {
+            font-weight: 400;
+            color: $cl_text_2;
+          }
+        }
+      }
+      .search-bar {
+        height: 80px;
+        input {
+          width: 100%;
+          font-size: 24px;
+        }
+
+        .result-title {
+          font-size: 28px;
+          font-weight: 700;
+          span.cnt {
+            color: $cl_main;
+          }
+        }
+      }
+    }
+    .org-all-wrap {
+      font-size: 30px;
+      flex-direction: column;
+      max-height: initial;
+      .org-tree-wrap {
+        flex: 1;
+        width: 100%;
+        border-right: none;
+        .company-name {
+          height: 80px;          
+        }
+        .org-tree-box {
+          summary::before {
+            content: url(#{$imgPath}ic_arr_tree_28.svg);
+            top: 17px;
+          }
+          details[open] > summary:before {
+            top: 15px;
+          }
+          .org-depth1 {
+            & > summary {              
+              & > .org-name {
+                padding-left: 58px;
+              }
+            }
+    
+            & > .last-depth {
+              li {
+                padding-left: 58px;
+              }
+            }
+
+            .org-depth2 {
+              & > summary {
+                &::before {
+                  left: 58px;
+                }
+                & > .org-name {
+                  padding-left: 95px;
+                }
+              } 
+    
+              & > .last-depth {
+                li {
+                  padding-left: 95px;
+                }
+              }
+
+              .org-depth3 {
+                & > summary {
+                  &::before {
+                    left: 95px;
+                  }
+                  & > .org-name {
+                    padding-left: 133px;
+                  }
+                } 
+    
+                .last-depth {
+                  li {
+                    padding-left: 133px;
+                  }
+                }
+              }
+            }
+          }
+          .last-depth {
+            li {
+              &::before {
+                content: url(#{$imgPath}ic_members_28.svg);
+                padding-top: 7.5px;
+              }
+              &.location {
+                span {font-weight: 400;}
+                &::before {
+                  content: url(#{$imgPath}ic_members_wh_28.svg);
+                }
+              }
+            }
+          }
+        }
+        .org-name {
+          height: 80px !important;
+        }
+
+        .result-title {
+          font-size: 24px;
+          margin-bottom: 10px;
+        }
+        .search-dept-wrap {
+          padding: 20px 0;
+        }
+      }
+      .org-detail-wrap {
+        padding: 0;
+
+        .member-wrap {
+          .member-info {
+            .member-detail {
+              background: #fff;
+              font-size: 28px;
+              li {
+                height: 60px; 
+                align-items: center;           
+                &:first-child {
+                  gap: 5px;
+                  margin-bottom: 20px;
+                  span {
+                    color: $cl_main;
+                    font-weight: 700;
+                  }
+                }
+                &:not(:first-child,:last-child) {
+                  margin-bottom: 0;
+                }
+                .title {
+                  width: 136px;
+                }
+                &::before {
+                  width: 32px;
+                  height: 32px;
+                  margin-right: 12px;
+                }
+                &:nth-child(2)::before {
+                  content: url(#{$imgPath}ic_position_32.svg);
+                } 
+                &:nth-child(3)::before {
+                  content: url(#{$imgPath}ic_rank_32.svg);             
+                } 
+                &:nth-child(4)::before {
+                  content: url(#{$imgPath}ic_tel_32.svg);             
+                } 
+                &:nth-child(5)::before {
+                  content: url(#{$imgPath}ic_birth_32.svg);             
+                } 
+                &:nth-child(6)::before {
+                  content: url(#{$imgPath}ic_charge_32.svg);             
+                } 
+              }
+            }
+          }
+        }
+      }
+
+      &:has(.search-no-data) {
+        @include flex_center;
+        .search-no-data {
+          flex: none;
+        }
+      }
+    }
+    
+  }
+
+  
+}

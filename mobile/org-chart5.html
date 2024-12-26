@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/styles.css">
+
+  <title>조직도</title>
+</head>
+<body>
+  <div class="layout-wrap">
+    <header class="header-wrap">
+      <div class="hd-top">
+        <div class="group-btn">
+          <button class="btn-back btn-icon-40"></button>
+        </div>
+        <input type="text" name="" id="" placeholder="부서, 멤버, 휴대폰, 이메일 검색">
+        <div class="group-btn">
+          <button class="btn-home btn-icon-40"></button>
+        </div>
+      </div>
+      <div class="search-bar">
+        <div class="result-title">검색결과 <span class="cnt">6건</span></div>      
+      </div>
+    </header>    
+    <main class="org-all-wrap">      
+      <div class="org-tree-wrap scroll-on">
+        <div class="search-dept-wrap">
+          <div class="result-title">부서 1</div>
+          <div class="org-tree-box">
+            <details class="org-depth1">
+              <summary>
+                <div class="org-name"><div class="search-word">홍</div>보담당팀1<span class="cnt">364</span></div>
+              </summary>
+              <details class="org-depth2">
+                <summary>
+                  <div class="org-name">지주부분<span class="cnt">23</span></div>
+                </summary>
+                <details class="org-depth3">
+                  <summary>
+                    <div class="org-name">지주부분1<span class="cnt">253</span></div>
+                  </summary>
+                  <ul class="last-depth">
+                    <li class="org-name">지주부분1-1<span class="cnt">364</span></li>
+                    <li class="org-name">지주부분1-2<span class="cnt">364</span></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+            <details class="org-depth1">
+              <summary>
+                <div class="org-name"><div class="search-word">홍</div>보담당팀2<span class="cnt">364</span></div>
+              </summary>
+              <details class="org-depth2">
+                <summary>
+                  <div class="org-name">지주부분<span class="cnt">23</span></div>
+                </summary>
+                <details class="org-depth3">
+                  <summary>
+                    <div class="org-name">지주부분1<span class="cnt">253</span></div>
+                  </summary>
+                  <ul class="last-depth">
+                    <li class="org-name">지주부분1-1<span class="cnt">364</span></li>
+                    <li class="org-name">지주부분1-2<span class="cnt">364</span></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+            <details class="org-depth1">
+              <summary>
+                <div class="org-name"><div class="search-word">홍</div>보담당팀3<span class="cnt">364</span></div>
+              </summary>
+              <details class="org-depth2">
+                <summary>
+                  <div class="org-name">지주부분<span class="cnt">23</span></div>
+                </summary>
+                <details class="org-depth3">
+                  <summary>
+                    <div class="org-name">지주부분1<span class="cnt">253</span></div>
+                  </summary>
+                  <ul class="last-depth">
+                    <li class="org-name">지주부분1-1<span class="cnt">364</span></li>
+                    <li class="org-name">지주부분1-2<span class="cnt">364</span></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </div>
+        </div>
+        <div class="search-member-wrap">
+          <div class="result-title">멤버 2</div>
+          <div class="member-info-box">
+            <div class="profile-wrap on">
+              <img src="" alt="" class="img-person-100">
+            </div>
+            <ul class="profile-detail">
+              <li>
+                <span class="member-name"><div class="search-word">홍</div>길동</span> 부장
+              </li>
+              <li>DX팀 / 팀장</li>
+              <li>ddsdoo@naver.com</li>
+              <li>010-1234-5678</li>
+            </ul>
+            <div class="message-wrap">
+              <img src="" alt="" class="ic-msg-40">
+            </div>
+          </div>    
+          <div class="member-info-box">
+            <div class="profile-wrap on">
+              <img src="" alt="" class="img-person-100">
+            </div>
+            <ul class="profile-detail">
+              <li>
+                <span class="member-name"><div class="search-word">홍</div>길동</span> 부장
+              </li>
+              <li>DX팀 / 팀장</li>
+              <li>ddsdoo@naver.com</li>
+              <li>010-1234-5678</li>
+            </ul>
+            <div class="message-wrap">
+              <img src="" alt="" class="ic-msg-40">
+            </div>
+          </div>    
+        </div>
+
+      </div>
+      <!-- 데이타가 없는 경우 -->
+      <div class="search-no-data hide">
+        <span>“부"</span>와(과) 일치하는 <br> 검색 결과가 없습니다.
+      </div>
+    </main>
+  </div>
+  <script src="../scripts/jquery-3.6.0.min.js"></script>
+  <script src="../scripts/jquery-ui.min.js"></script>
+  <script src="../scripts/script.js"></script>
+</body>
+</html>

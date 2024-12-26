@@ -19,3 +19,8 @@ $(".last-depth .org-name").click(function(){
   $(this).addClass('location');
 })
 
+$(".search-member-wrap .member-info-box").click(function(){
+  $(".member-info-box").removeClass('location');
+  $(this).addClass('location');
+})
+
