@@ -91,6 +91,7 @@
 .member-info-box .profile-wrap {
   position: relative;
   width: 48px;
+  min-width: 48px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -264,6 +265,12 @@
   width: 100px;
   height: 100px;
   content: url(../img/img_person_100.png);
+}
+
+.img-person-160 {
+  width: 160px;
+  height: 160px;
+  content: url(../img/img_person_160.png);
 }
 
 .img-person-200 {
