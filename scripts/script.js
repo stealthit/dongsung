@@ -24,3 +24,15 @@ $(".search-member-wrap .member-info-box").click(function(){
   $(this).addClass('location');
 })
 
+$(".open-popup").click(function(){
+  $('head').append( $('<link rel="stylesheet" type="text/css" />').attr('href', './css/styles.css') );
+})
+
+$(".close-popup").click(function(){
+  $("link[rel=stylesheet][href*='./css/styles.css']").remove()
+})
+
+$(".btn-close").click(function(){
+  $("link[rel=stylesheet][href*='./css/styles.css']").remove()
+  $(this).parents(".layout-wrap").addClass("hide")
+})

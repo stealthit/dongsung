@@ -1,5 +1,4 @@
 @charset "UTF-8";
-
 *,
 ::before,
 ::after {
@@ -42,7 +41,7 @@ html {
   -moz-tab-size: 4;
   -o-tab-size: 4;
      tab-size: 4;
-  font-family: "Pretendard", sans-serif;
+  /* font-family: "Pretendard", sans-serif; */
   height: 100%;
 }
 
@@ -229,7 +228,7 @@ input[type=radio] {
 
 /* Normalize */
 body {
-  font-family: "Pretendard", sans-serif;
+  /* font-family: "Pretendard", sans-serif; */
 }
 
 select {
